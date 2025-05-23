@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio de Fotografia</title>
+  <link rel="stylesheet" href="Principal.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="top-header">
+        <div class="branding">
+          <img src="logo.png" alt="Logo da Mstar" class="logo" />
+          <span class="brand-name">Mstar</span>
+        </div>
+        <h1>Portfólio de Fotografia</h1>
+      </div>
+      <nav>
+        <div class="menu-wrapper">
+          <button id="menuButton" class="nav-button">Menu</button>
+          <a href="Sobremim.html" class="nav-button">Sobre Mim</a>
+          <div id="megaMenu" class="mega-menu">
+            <div class="menu-column">
+              <h3><a href="Congelamento.html">Congelamento</a></h3>
+              <p class="Categoria">Água em Suspensão</p>
+              <p class="Categoria">Corridas</p>
+              <p class="Categoria">Esportes</p>
+            </div>
+            <div class="menu-column">
+              <h3><a href="Desfoque.html">Desfoque</a></h3>
+              <p class="Categoria">Retratos</p>
+              <p class="Categoria">Bokeh</p>
+              <p class="Categoria">Fundos suaves</p>
+            </div>
+            <div class="menu-column">
+              <h3><a href="Arrastamento.html">Arrastamento</a></h3>
+              <p class="Categoria">Trilhas de Luz</p>
+              <p class="Categoria">Carros em movimento</p>
+              <p class="Categoria">Objetos Dinâmicos</p>
+            </div>
+            <div class="menu-column">
+              <h3><a href="Lightpainting.html">Lightpainting</a></h3>
+              <p class="Categoria">Desenhos com luz</p>
+              <p class="Categoria">Lanternas</p>
+              <p class="Categoria">LEDs</p>
+            </div>
+            <div class="menu-column">
+              <h3><a href="Panning.html">Panning</a></h3>
+              <p class="Categoria">Movimento de Câmera</p>
+              <p class="Categoria">Velocidade</p>
+              <p class="Categoria">Efeito Cinema</p>
+            </div>
+            <div class="menu-column">
+              <h3><a href="Edições.html">Edições</a></h3>
+              <p class="Categoria">Preto e Branco</p>
+              <p class="Categoria">Contraste</p>
+              <p class="Categoria">Filtros</p>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home">
+    <div class="container">
+      <h2>Bem-vindo ao meu portfólio!</h2>
+      <p>Confira o meu trabalho e entre em contato para mais informações.</p>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <h2>Alguns trabalhos</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="Borboleta.jpg" alt="Foto 1 - Borboleta colorida" onclick="openModal(this.src, this.alt)" />
+        </div>
+        <div class="gallery-item">
+          <img src="Nuvem.jpg" alt="Foto 2 - Nuvem dramática" onclick="openModal(this.src, this.alt)" />
+        </div>
+        <div class="gallery-item">
+          <img src="PR3.jpg" alt="Foto 3 - Placeholder" onclick="openModal(this.src, this.alt)" />
+        </div>
+         <div class="gallery-item">
+          <img src="Ficha 2 - Fruta.jpg" alt="Foto 1 - Borboleta colorida" onclick="openModal(this.src, this.alt)" />
+        </div>
+        <div class="gallery-item">
+          <img src="Letra.jpg" alt="Foto 1 - Borboleta colorida" onclick="openModal(this.src, this.alt)" />
+        </div>
+        <div class="gallery-item">
+          <img src="Abelha.jpg" alt="Foto 1 - Borboleta colorida" onclick="openModal(this.src, this.alt)" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; Portfólio de Fotografia - Martim Fernandes</p>
+    </div>
+  </footer>
+
+  <script>
+    // Menu toggle
+    const menuButton = document.getElementById('menuButton');
+    const megaMenu = document.getElementById('megaMenu');
+
+    menuButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      megaMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!megaMenu.contains(e.target) && !menuButton.contains(e.target)) {
+        megaMenu.classList.remove('show');
+      }
+    });
+
+    // Modal para zoom da imagem com legenda
+    function openModal(src, alt) {
+      // Cria o modal
+      const modal = document.createElement('div');
+      modal.id = 'modalZoom';
+
+      // Fecha modal ao clicar fora da imagem (na área do modal)
+      modal.onclick = (e) => {
+        if (e.target === modal) {
+          modal.remove();
+        }
+      };
+
+      // Cria um figure para imagem + legenda
+      const figure = document.createElement('figure');
+      figure.style.margin = '0';
+
+      // Imagem
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt;
+
+      // Legenda
+      const caption = document.createElement('figcaption');
+      caption.textContent = alt || 'Sem legenda';
+
+      // Anexa img e legenda ao figure
+      figure.appendChild(img);
+      figure.appendChild(caption);
+
+      // Anexa figure ao modal
+      modal.appendChild(figure);
+
+      // Anexa modal ao body
+      document.body.appendChild(modal);
+    }
+  </script>
+</body>
+</html>
